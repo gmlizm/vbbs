@@ -1,0 +1,19 @@
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter"
+	compile "org.apache.commons:commons-lang3:3.5"
+    compile "commons-io:commons-io:2.5"
+    compile "commons-codec:commons-codec:1.10"
+    compile "com.google.guava:guava:25.1-jre"
+    compile "com.google.code.gson:gson:2.8.5"
+    //compile "ch.qos.logback:logback-core:1.1.7"
+    //compile "ch.qos.logback:logback-classic:1.1.7"
+    //compile "ch.qos.logback:logback-access:1.1.7"
+
+    //compile "org.javassist:javassist:3.21.0-GA"
+    
+    //import
+    //compile "org.picocontainer:picocontainer:2.15"
+    
+    //yaml
+    compile "org.yaml:snakeyaml:1.21"
+}

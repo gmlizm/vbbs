@@ -1,0 +1,7 @@
+apply plugin: 'osgi'
+jar.manifest {
+  name="${project.name}"
+  symbolicName = "${project.name}"
+  instruction 'Bundle-Vendor', 'Aboo'
+  instruction 'Bundle-Description', "project [${project.name}] description"
+}

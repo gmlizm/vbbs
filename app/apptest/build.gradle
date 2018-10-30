@@ -1,0 +1,15 @@
+dependencies {
+    testCompile project(":$rootProject.name-web")
+    testCompile "org.springframework.boot:spring-boot-devtools"
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+    
+    //test jar
+    testCompile "com.esotericsoftware:kryo:4.0.2"
+    testCompile "com.caucho:hessian:4.0.51"
+    testCompile "com.google.protobuf:protobuf-java:3.5.1"
+    testCompile group: 'io.protostuff', name: 'protostuff-core', version: '1.6.0'
+    testCompile group: 'io.protostuff', name: 'protostuff-runtime', version: '1.6.0'
+    testCompile group: 'io.protostuff', name: 'protostuff-api', version: '1.6.0'
+    testCompile "org.apache.thrift:libthrift:0.11.0:pom"
+    testCompile "org.msgpack:msgpack:0.6.12"
+}

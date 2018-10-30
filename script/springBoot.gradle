@@ -1,0 +1,6 @@
+apply plugin: "org.springframework.boot"
+//bootJar {
+//  enabled=false
+//  //classifier='exe'
+//}
+

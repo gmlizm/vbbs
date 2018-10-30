@@ -1,0 +1,17 @@
+apply plugin: 'eclipse'
+eclipse {
+  //sourceSets*.java.srcDirs*.each {if(!it.exists()){it.mkdirs()}}
+  //sourceSets*.resources.srcDirs*.each {if(!it.exists()){it.mkdirs()}}
+  //只判断main下面的资源文件夹
+  sourceSets.main.java.srcDirs.each {if(!it.exists()){it.mkdirs()}}
+  sourceSets.main.resources.srcDirs.each {if(!it.exists()){it.mkdirs()}}
+  classpath {
+    defaultOutputDir = file('build/bin')
+    downloadSources = true
+    downloadJavadoc = true
+  }
+}
+cleanEclipse{
+  dependsOn 'delSettings'
+  task delSettings(type: Delete){delete '.settings'}
+}

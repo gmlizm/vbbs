@@ -1,0 +1,26 @@
+apply plugin: 'war'
+//webAppDirName='src/main/webapp' default
+assemble {
+	dependsOn 'copyDepends', 'copyCore', 'copyWar'
+	task copyDepends(type: Copy) {
+			from configurations.runtime
+			into "${project.buildDir}/depends/libs"
+			exclude "${rootProject.name}*.jar"
+	}
+	task copyCore(type: Copy) {
+			from configurations.runtime
+			into "${project.buildDir}/depends/core"
+			include "${rootProject.name}*.jar"
+	}
+	task copyWar(type: Copy) {
+			dependsOn 'war'
+			from libsDir
+			into "${rootDir}/app-dist"
+	}
+}
+war{
+  from("${projectDir}") {
+    include "templates/*.*","templates/*/**.*"  
+  } 
+	archiveName="${rootProject.name}.${extension}"
+}

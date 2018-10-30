@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" debug="false" scanPeriod="30 seconds">
+    <property name="APP_NAME" value="vbbs" />
+    <property name="DEPLOY_DIR" value="/mnt/deploy" />
+    
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] [%C{16}.%method] -> %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<appender name="APP_LOG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${DEPLOY_DIR}/logs/log-${APP_NAME}.log</file>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] [%C{16}.%method] -> %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${DEPLOY_DIR}/logs/log-${APP_NAME}-%d{yyyyMMdd}.log</fileNamePattern>
+			<maxHistory>3</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+
+    <logger name="com.aboo.vbbs" level="INFO" additivity="true">
+        <appender-ref ref="APP_LOG" />
+    </logger>
+	
+	<logger name="com.aboo.vbbs" level="INFO" additivity="true" />
+	<logger name="jdbc.sqltiming" level="ERROR" additivity="true" />
+    <logger name="org" level="ERROR" additivity="true" />
+    <logger name="com" level="ERROR" additivity="true" />
+    <logger name="net" level="ERROR" additivity="true" />
+    <logger name="springfox" level="ERROR" additivity="true" />
+	
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="LOGALL" />
+	</root>
+</configuration>

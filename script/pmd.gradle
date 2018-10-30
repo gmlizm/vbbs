@@ -1,0 +1,4 @@
+apply plugin: 'pmd'
+pmd{
+  pmdTest.enabled=false
+}

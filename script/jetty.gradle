@@ -1,0 +1,17 @@
+/* JETTY PLUGIN */
+apply plugin: 'jetty'
+jettyRun{
+	//必须为false,否则数据连接无法加载
+	//daemon='false'
+	httpPort=8081
+	contextPath="${rootProject.name}"
+	reload="automatic"
+	scanIntervalSeconds=1
+}
+jettyRunWar{
+	contextPath="${rootProject.name}"
+	//daemon='true'
+	httpPort=8081
+	reload='automatic'
+	scanIntervalSeconds=60
+}

@@ -1,0 +1,83 @@
+##################################################################
+server: 
+    display-name: ${spring.application.name}-app
+    port: 8081
+    context-path: /
+    servlet-path: /
+    error: 
+        whitelabel: 
+            enabled: false
+            
+##################################################################          
+spring.application.name: vbbs
+##################################################################
+site:
+     theme: default
+
+security:
+  basic:
+    enabled: false
+  oauth2:
+      client:
+        clientId: d75a4b9ae4093e6cf5b6
+        clientSecret: ed0bb09950ed733fb387f7e563e6759fb7c0ae2a
+        accessTokenUri: https://github.com/login/oauth/access_token
+        userAuthorizationUri: https://github.com/login/oauth/authorize
+        clientAuthenticationScheme: form
+      resource:
+        userInfoUri: https://api.github.com/user
+      sso:
+        login-path: /login/github
+##################################################################
+spring: 
+    dao.exceptiontranslation.enabled: true
+    jndi.ignore: true
+    datasource: 
+        bbs:
+            type: com.zaxxer.hikari.HikariDataSource
+            continue-on-error: false
+            driverClassName: com.mysql.jdbc.Driver
+            jdbcUrl: "jdbc:mysql://127.0.0.1:3306/db_bbs?serverTimezone=UTC&characterEncoding=utf8&autoReconnect=true&useSSL=false"
+            username: root
+            password: root
+            initialize: false
+            schema: "classpath:/RES-INF/script-db/init-ddl.sql"
+            #schema-username: username(if different).
+            #schema-password: password(if different).
+            data: "classpath:/RES-INF/script-db/init-data.sql"
+            #data-username: username(if different).
+            #data-password: password(if different).
+            separator: ;
+            sql-script-encoding: UTF-8
+            generate-unique-name: false
+        sys:
+            type: com.zaxxer.hikari.HikariDataSource
+            continue-on-error: false
+            driverClassName: com.mysql.jdbc.Driver
+            jdbcUrl: "jdbc:mysql://127.0.0.1:3306/db_acc?serverTimezone=UTC&characterEncoding=utf8&autoReconnect=true&useSSL=false"
+            username: root
+            password: root
+            initialize: false
+            schema: "classpath:/RES-INF/script-db/init-ddl.sql"
+            #schema-username: username(if different).
+            #schema-password: password(if different).
+            data: "classpath:/RES-INF/script-db/init-data.sql"
+            #data-username: username(if different).
+            #data-password: password(if different).
+            separator: ;
+            sql-script-encoding: UTF-8
+            generate-unique-name: false
+        hikari: 
+            poolName: hikari_connection_pool
+            connectionInitSql: 
+            transactionIsolation: TRANSACTION_READ_COMMITTED
+            connectionTimeout: 3000
+            validationTimeout: 1000
+            idleTimeout: 600000
+            leakDetectionThreshold: 3000
+            maxLifetime: 1800000
+            maximumPoolSize: 50
+            minimumIdle: 5
+            connectionTestQuery: select 1 from dual
+
+##################################################################

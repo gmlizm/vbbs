@@ -1,0 +1,27 @@
+dependencies {
+	compile project(":$rootProject.name-web")
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+//	compile "org.springframework.boot:spring-boot-starter-remote-shell"
+
+	//testCompile "org.springframework.boot:spring-boot-devtools"
+}
+
+
+
+
+apply from: "${scriptDir}/springBoot.gradle"
+bootJar {
+    mainClassName = 'com.aboo.vbbs.Application'
+}
+
+assemble {
+    dependsOn 'copyApp'
+    task copyApp(type: Copy) {
+            dependsOn 'jar'
+            from(libsDir){
+              include "${project.name}-${version}.jar"
+            }
+            into "${rootDir}/zpkg"
+            rename{String fileName -> fileName.replace("$project.name","$rootProject.name")}
+    }
+}

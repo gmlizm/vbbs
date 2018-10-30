@@ -1,0 +1,5 @@
+dependencies {
+	compile project(":$rootProject.name-data")
+	compile "org.springframework.boot:spring-boot-starter-mail"
+	//compile "org.apache.storm:storm-core:1.0.3"
+}

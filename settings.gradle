@@ -1,0 +1,32 @@
+/* ******************** rootProject ******************** */
+rootProject.name='vbbs'
+
+/* ========================================================== */
+/* ====================== subprojects ======================= */
+/* ========================================================== */
+
+/* ******************** app ******************** */
+include "$rootProject.name-app"
+project(":$rootProject.name-app").projectDir=new File(settingsDir,'app/app')
+
+/* ******************** apptest ******************** */
+include "$rootProject.name-apptest"
+project(":$rootProject.name-apptest").projectDir=new File(settingsDir,'app/apptest')
+
+/* ******************** base ******************** */
+include "$rootProject.name-base"
+project(":$rootProject.name-base").projectDir=new File(settingsDir,'app/base')
+
+/* ******************** data ******************** */
+include "$rootProject.name-data"
+project(":$rootProject.name-data").projectDir=new File(settingsDir,'app/data')
+
+/* ******************** serv ******************** */
+include "$rootProject.name-serv"
+project(":$rootProject.name-serv").projectDir=new File(settingsDir,'app/serv')
+
+/* ******************** web ******************** */
+include "$rootProject.name-web"
+project(":$rootProject.name-web").projectDir=new File(settingsDir,'app/web')
+
+

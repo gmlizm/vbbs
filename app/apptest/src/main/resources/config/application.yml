@@ -1,0 +1,101 @@
+##################################################################
+server: 
+    display-name: ${spring.application.name}-app
+    port: 8080
+    context-path: /
+    servlet-path: /
+    error: 
+        whitelabel: 
+            enabled: false
+            
+##################################################################          
+spring: 
+    application: 
+        index: 1
+        name: vbbs
+        admin: 
+            enabled: false
+            jmx-name: "org.springframework.boot: type: Admin,name: SpringApplication"
+    profiles: 
+        active: dev
+
+
+##################################################################
+spring: 
+    dao.exceptiontranslation.enabled: true
+    jndi.ignore: true
+    datasource: 
+        platform: 
+        name: 
+        type: com.zaxxer.hikari.HikariDataSource
+        continue-on-error: false
+        driver-class-name: com.mysql.jdbc.Driver
+        url: "jdbc:mysql://127.0.0.1:3306/db_aboo?serverTimezone=UTC&characterEncoding=utf8&autoReconnect=true&useSSL=false"
+        username: root
+        password: root
+        initialize: false
+        schema: "classpath:/RES-INF/script-db/init-ddl.sql"
+        #schema-username: username(if different).
+        #schema-password: password(if different).
+        data: "classpath:/RES-INF/script-db/init-data.sql"
+        #data-username: username(if different).
+        #data-password: password(if different).
+        separator: ;
+        sql-script-encoding: UTF-8
+        generate-unique-name: false
+        jmx-enabled: false
+        jndi-name: "java:jboss/datasources/customers"
+        hikari: 
+            driverClassName: ${spring.datasource.driver-class-name}
+            jdbcUrl: ${spring.datasource.url}
+            username: ${spring.datasource.username}
+            password: ${spring.datasource.password}
+            autoCommit: true
+            poolName: hikari_connection_pool
+            connectionInitSql: 
+            transactionIsolation: TRANSACTION_READ_COMMITTED
+            connectionTimeout: 30000
+            validationTimeout: 5000
+            idleTimeout: 600000
+            leakDetectionThreshold: 3000
+            maxLifetime: 1800000
+            maximumPoolSize: 50
+            minimumIdle: 5
+            initializationFailTimeout: 0
+            isolateInternalQueries: false
+            allowPoolSuspension: false
+            readOnly: false
+            registerMbeans: false
+            connectionTestQuery: select 1 from dual
+
+##################################################################
+mybatis-plus: 
+    #mapper-locations: classpath: /mapper/*Mapper.xml
+    #实体扫描，多个package用逗号或者分号分隔
+    typeAliasesPackage: com.aboo.vbbs.data.model.**
+    global-config: 
+        #主键类型  0: "数据库ID自增", 1: "用户输入ID",2: "全局唯一ID (数字类型唯一ID)", 3: "全局唯一ID UUID";
+        id-type: 0
+        #字段策略 0: "忽略判断",1: "非 NULL 判断"),2: "非空判断"
+        field-strategy: 0
+        #驼峰下划线转换
+        db-column-underline: true
+        #刷新mapper 调试神器
+        refresh-mapper: false
+        #数据库大写下划线转换
+        #capital-mode: true
+        # Sequence序列接口实现类配置
+        #key-generator: com.baomidou.mybatisplus.incrementer.OracleKeyGenerator
+        #逻辑删除配置（下面3个配置）
+        logic-delete-value: 1
+        logic-not-delete-value: 0
+        sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+        #自定义填充策略接口实现
+        #meta-object-handler: com.baomidou.springboot.MyMetaObjectHandler
+    configuration: 
+        #配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId） 
+        map-underscore-to-camel-case: true
+        cache-enabled: false
+        #配置JdbcTypeForNull, oracle数据库必须配置
+        jdbc-type-for-null: 'null'
+
